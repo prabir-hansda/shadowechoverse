@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shadow Echo Verse</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, blue, red, purple);
+      color: #ffffff;
+      max-width: 960px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header {
+      background: black;
+      padding: 20px;
+      height: 150px;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      animation: rgbGlow 8s infinite;
+    }
+
+    @keyframes rgbGlow {
+      0%   { color: #ff4c4c; text-shadow: 0 0 10px #ff4c4c; }
+      25%  { color: #4cff4c; text-shadow: 0 0 10px #4cff4c; }
+      50%  { color: #4c4cff; text-shadow: 0 0 10px #4c4cff; }
+      75%  { color: #ff4cff; text-shadow: 0 0 10px #ff4cff; }
+      100% { color: #ff4c4c; text-shadow: 0 0 10px #ff4c4c; }
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .tabs button {
+      background: #444;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tabs button:hover,
+    .tabs .active {
+      background: paleturquoise;
+      color: black;
+    }
+
+    .content {
+      display: none;
+      padding: 30px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .active-content {
+      display: block;
+    }
+
+    .card {
+      background: black;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px auto;
+      max-width: 350px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    }
+
+    .card img, .card video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .back-btn {
+      display: none;
+      margin: 15px;
+      padding: 10px 20px;
+      border: none;
+      background: greenyellow;
+      color: black;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      float: left;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+.link-box {
+  display: block;
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  margin: 10px auto;
+  text-align: center;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  animation: rgbShadow 4s infinite;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.link-box:hover {
+  background-color: peachpuff;
+  color: black;
+}
+
+@keyframes rgbShadow {
+  0%   { box-shadow: 0 0 15px #ff4c4c; }
+  25%  { box-shadow: 0 0 15px #4cff4c; }
+  50%  { box-shadow: 0 0 15px #4c4cff; }
+  75%  { box-shadow: 0 0 15px #ff4cff; }
+  100% { box-shadow: 0 0 15px #ff4c4c; }
+}
+
+    .links, .instagram {
+      text-align: center;
+      margin-top: 25rem;
+    }
+
+    .links a, .instagram a {
+      color: #00ffcc;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      border: 2px solid #00ffcc;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .links a:hover, .instagram a:hover {
+      background-color: #00ffcc;
+      color: #000;
+    }
+    
+  .video-container {
+  position: relative;
+  width: 100%;
+}
+
+.thumbnail-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the video area */
+  z-index: 1; /* Keeps the thumbnail on top of the video */
+  pointer-events: none;
+}
+
+video {
+  width: 100%;
+  height: auto;
+  z-index: 0; /* Ensures the video is beneath the thumbnail */
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">ShadowEchoVerse</div>
+    <div class="tabs" id="tabMenu">
+      <button class="tab-btn active" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="music">Music</button>
+      <button class="tab-btn" data-tab="video">Video</button>
+      <button class="tab-btn" data-tab="gallery">Gallery</button>
+      <button class="tab-btn" data-tab="links">Links</button>
+      <button class="tab-btn" data-tab="about">About</button>
+      
+    </div>
+    <button class="back-btn" id="backBtn">← Back</button>
+  </header>
+
+  <div id="home" class="content active-content">
+    <h2>Welcome to ShadowEchoVerse</h2>
+    <p>Yahan aap music, video dekh sakte hain aur images enjoy kar sakte hain.</p>
+    
+        <!-- Social Links -->
+    <div class="instagram">
+      Follow me on Instagram:
+      <a href="https://www.instagram.com/prabirhansda2" target="_blank">@prabirhansda2</a>
+    </div>
+  </div>
+
+  <div id="music" class="content">
+    <h2>My Music Playlist</h2>
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/prabir6201/Music-public-for-read/refs/heads/main/images.jpg" alt="Music Thumbnail">
+      <audio controls style="width: 100%; margin-top: 10px;">
+        <source src="https://raw.githubusercontent.com/prabir6201/Music-public-for-read/refs/heads/main/Aapetola%20Bonga%20%20New%20Santali%20Video%20%202025%20I%20Swagatika%20I%20Sukumar%20D.mp3" type="audio/mpeg">
+        Aapka browser audio support nahi karta.
+      </audio>
+    </div>
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT56W6urodH1ve-hgxkNwTBlrjtylIdSY5ZrNOczr1RjNKEqiYsKW5bU9U&s=10" alt="Music Thumbnail">
+      <audio controls style="width: 100%; margin-top: 10px;">
+        <source src="https://raw.githubusercontent.com/prabir6201/Music-public-for-read/refs/heads/main/BANJU%20SOREN%20OFFICIAL%20-%20OKALEKAN%20DULAL%20%EF%BD%9C%EF%BD%9C%20SANTALI%20NEW%20STUDIO%20VERSION%202024%20%EF%BD%9C%EF%BD%9C%20KUMAR%20SAWAN%20%26%20NIRMALA.mp3" type="audio/mpeg">
+        Aapka browser audio support nahi karta.
+      </audio>
+    </div>
+  </div>
+
+<div id="video" class="content">
+  <h2>Video Player</h2>
+  
+  <!-- Video Card with Thumbnail Inside -->
+  <div class="card">
+    <div class="video-container">
+      <!-- Video -->
+      <video id="videoPlayer" controls poster="https://raw.githubusercontent.com/prabir6201/Music-public-for-read/refs/heads/main/Anil.png">
+        
+        <source src="https://raw.githubusercontent.com/prabir6201/Music-public-for-read/refs/heads/main/Untitled%20-%20Sequence%2001.mp4" type="video/mp4">
+        Aapka browser video support nahi karta.
+      </video>
+      
+    
+    </div>
+  </div>
+  
+  
+  
+  
+    <div class="card">
+      <iframe id="ytplayer" width="100%" height="180" 
+              src="https://www.youtube.com/embed/NUu3kX9gx9c?enablejsapi=1" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div id="gallery" class="content">
+    <h2>Image Gallery</h2>
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/prabir6201/Music-public-for-read/refs/heads/main/pratab.jpg" alt="Image 1">
+    </div>
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/prabir6201/Music-public-for-read/refs/heads/main/Monika%203D%20cartoon.png" alt="Image 2">
+    </div>
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/prabir6201/Music-public-for-read/refs/heads/main/file_0000000093d051f7b8970a633254085d_conversation_id%3D67e8cc32-1440-8002-9e18-0c0628b45180%26message_id%3Dfb3970aa-74ab-4ec6-9da5-0e9d2f874fb2%20(1).PNG" alt="Image 3">
+    </div>
+  </div>
+  
+<div id="links" class="content">
+  <h2>Important Links</h2>
+  <div class="card">
+    <a href="https://github.com/prabir-hansda" target="_blank" class="link-box">GitHub</a>
+    <a href="https://prabirhansda2.blogspot.com/?m=1" target="_blank" class="link-box">Blogspot</a>
+    <a href="https://youtube.com/@vinesonlymusicvom?si=2k_uDMn9opWbMYAF" target="_blank" class="link-box">YouTube</a>
+  </div>
+</div>
+
+  <div id="about" class="content">
+    <h2>About Us</h2>
+    <p>Hi! I'm Prabir Hansda. I love music and coding. This website is just for fun while I learn HTML.</p>
+  </div>
+
+  <script>
+    let player; // Variable for YouTube player
+
+    // YouTube Player API initialization
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('ytplayer', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // Video player ready logic (optional)
+    }
+
+    function onPlayerStateChange(event) {
+      // Handling state changes of YouTube video (optional)
+    }
+
+    const tabs = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".content");
+    const tabMenu = document.getElementById("tabMenu");
+    const backBtn = document.getElementById("backBtn");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabMenu.style.display = "none";
+        backBtn.style.display = "inline-block";
+
+        tabs.forEach(t => t.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active-content"));
+
+        const id = tab.getAttribute("data-tab");
+        tab.classList.add("active");
+        document.getElementById(id).classList.add("active-content");
+
+        // Pause all audio and video when switching tabs
+        document.querySelectorAll("audio, video").forEach(media => {
+          media.pause();
+          media.currentTime = 0; // Optional: reset playback to start
+        });
+
+        // Pause YouTube video when switching tabs
+        if (player) {
+          player.pauseVideo();
+        }
+      });
+    });
+
+    backBtn.addEventListener("click", () => {
+      contents.forEach(c => c.classList.remove("active-content"));
+      tabs.forEach(t => t.classList.remove("active"));
+
+      document.getElementById("home").classList.add("active-content");
+      document.querySelector('[data-tab="home"]').classList.add("active");
+
+      tabMenu.style.display = "flex";
+      backBtn.style.display = "none";
+
+      // Stop all media when back is clicked
+      document.querySelectorAll("audio, video").forEach(media => {
+        media.pause();
+        media.currentTime = 0;
+      });
+
+      // Stop YouTube video when back is clicked
+      if (player) {
+        player.pauseVideo();
+      }
+    });
+  </script>
+  
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+  const players = document.querySelectorAll('audio');
+    players.forEach(current => {
+      current.addEventListener('play', () => {
+        players.forEach(player => {
+          if (player !== current) player.pause();
+        });
+      });
+    });
+</script>
+
+</body>
+</html>
