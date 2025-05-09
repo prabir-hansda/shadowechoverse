@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Songs My Playlist</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(270deg, #00f0ff, #00c6ff, #8e2de2, #ff00c8, pink, #ff7e5f, purple);
+    color: #ffffff;
+    max-width: 960px;
+    height: 2000px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background-size: 1000% 1000%;
+    animation: gradientMove 15s ease infinite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 50% 100%;
+    }
+    100% {
+      background-position: 0% 100%;
+    }
+  }
+
+  header {
+    background: rgba(152, 251, 152, 0.9); /* light transparent palegreen */
+    padding: 20px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #2f2f2f;
+  }
+
+  #search-container {
+    margin-top: 10px;
+  }
+
+  #search-input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 70%;
+    max-width: 300px;
+  }
+
+  .song-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 12px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+
+  .song-box:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+  }
+
+  .thumbnail {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #fff;
+  }
+
+  .song-info {
+    flex-grow: 1;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+
+  .active-song {
+    background-color: rgba(22, 184, 135, 0.9); /* burlywood with transparency */
+    font-weight: bold;
+    box-shadow: 0 0 10px #fff;
+  }
+
+  audio {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+
+  hr {
+    width: 100%;
+    border: none;
+    height: 1px;
+    background: #fff;
+    margin: 20px 0;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+<header>
+<h1>💐🌹My Playlist🌹💐</h1>
+<div id="search-container">
+  <input type="text" id="search-input" placeholder="Search songs...">
+</div>
+</header>
+<hr>
+<audio id="audioPlayer" controls></audio>
+<br><br>
+<div id="songList">
+  <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Aapetola%20Bonga%20%20New%20Santali%20Video%20%202025%20I%20Swagatika%20I%20Sukumar%20D.mp3" data-thumbnail="thumbnail1.jpg" data-title="Aapetola Bonga">
+    <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 1" class="thumbnail">
+    <div class="song-info">Aapetola Bonga</div>
+  </div>
+  <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/BANJU%20SOREN%20OFFICIAL%20-%20OKALEKAN%20DULAL%20%EF%BD%9C%EF%BD%9C%20SANTALI%20NEW%20STUDIO%20VERSION%202024%20%EF%BD%9C%EF%BD%9C%20KUMAR%20SAWAN%20%26%20NIRMALA.mp3" data-thumbnail="thumbnail2.jpg" data-title="Okalekan Dulal">
+    <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 2" class="thumbnail">
+    <div class="song-info">Okalekan Dulal</div>
+  </div>
+  <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/RAHLA%20RIMIL%20CREATION%20-%20E%20Hapan%20Mai%20Santali%20Video%20%EF%BD%9C%EF%BD%9C%20New%20Santali%20Song%202020%20%EF%BD%9C%EF%BD%9C%20Sili%20Tudu%20%26%20Sagen%20Hembram.mp3" data-thumbnail="thumbnail3.jpg" data-title="E Hapan Mai">
+    <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 3" class="thumbnail">
+    <div class="song-info">E Hapan Mai</div>
+  </div>
+
+<div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Buddhadev%20Mandi%20-%20Amge%20Setah%20Sisir.mp3" data-thumbnail="thumbnail4.jpg" data-title="Amge Setah Sisir">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 4" class="thumbnail">
+  <div class="song-info">Amge Setah Sisir</div>
+</div>
+<div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/UPAL%20BAHA%20SANTALI%20SONG.mp3" data-thumbnail="thumbnail5.jpg" data-title="UPAL BAHA">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 5" class="thumbnail">
+  <div class="song-info">UPAL BAHA</div>
+</div>
+  <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/NAWA%20ALBUM%20HEROINE%20NEW%20SANTALI.mp3" data-thumbnail="thumbnail6.jpg" data-title="NAWA ALBUM HEROING">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 6" class="thumbnail">
+  <div class="song-info">NAWA ALBUM HEROING</div>
+  </div>
+<div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Release%20-%20Sard%20Baha.mp3" data-thumbnail="thumbnail7.jpg" data-title="Sard Baha">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 7" class="thumbnail">
+  <div class="song-info">Sard Baha</div>
+  </div>
+  <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Susmita%20Hembram%20-%20Buru%20Songha%20Re.mp3" data-thumbnail="thumbnail8.jpg" data-title="Buru Songha Re">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 8" class="thumbnail">
+  <div class="song-info">Buru Songha Re</div>
+  </div>
+  <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Rusika%20Bakhol%20-%20Gum%20Sum%20Gum.mp3" data-thumbnail="thumbnail9.jpg" data-title="Gum Sum Gum">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 9" class="thumbnail">
+  <div class="song-info">Gum Sum Gum</div>
+  </div>
+  <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Santhali%20Diwana%20-%20Jiyal%20Jharna.mp3" data-thumbnail="thumbnail10.jpg" data-title="Jiyal Jharna">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 10" class="thumbnail">
+  <div class="song-info">Jiyal Jharna</div>
+  </div>
+   <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Sawan%20Murmu%20-%20Monetinj%20Tahe%20Kana.mp3" data-thumbnail="thumbnail11.jpg" data-title="Monetinj Tahe Kana">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 11" class="thumbnail">
+  <div class="song-info">Monetinj Tahe Kana</div>
+  </div>
+   <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/DEULI%20DAM%20PHUD%20ENA.mp3" data-thumbnail="thumbnail12.jpg" data-title="Deuli Dam Phud Ena">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 12" class="thumbnail">
+  <div class="song-info">Deuli Dam Phud Ena</div>
+  </div>
+   <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Madhur%20Sharma%20-%20Kehna%20Galat%20Galat%20%EF%BD%9C%20Ye%20Jo%20Halka%20Halka%20Suroor%20%EF%BD%9C%20Madhur%20Sharma%20%EF%BD%9C%20Swapnil%20Tare%20%40PearlRecords.mp3" data-thumbnail="thumbnail13.jpg" data-title="Kehna Galat Galat/Ye Jo Halka Halka Suroor">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 13" class="thumbnail">
+  <div class="song-info">Kehna Galat Galat/Ye Jo Halka Halka Suroor</div>
+  </div>
+   <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/Sony%20Music%20South%20-%20Love%20Insurance%20Kompany%20-%20Dheema%20Video%20%EF%BD%9C%20Pradeep%20Ranganathan%20%EF%BD%9C%20Anirudh%20Ravichander%20%EF%BD%9C%20Vignesh%20Shivan.mp3" data-thumbnail="thumbnail14.jpg" data-title="Dheema Dheema">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 14" class="thumbnail">
+  <div class="song-info">Dheema Dheema</div>
+  </div>
+   <div class="song-box" data-src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/SVF%20Music%20-%20Keno%20Je%20Toke%20%EF%BD%9C%20Lyrical%20%EF%BD%9C%20Mon%20Jaane%20Na%20%EF%BD%9C%20Yash%20%EF%BD%9C%20Mimi%20%EF%BD%9C%20Raj%20Barman%20%EF%BD%9C%20Prasen%20%EF%BD%9C%20Dabbu%20%EF%BD%9C%20SVF%20Music.mp3" data-thumbnail="thumbnail15.jpg" data-title="Keno Je Toke">
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg" alt="Thumbnail 15" class="thumbnail">
+  <div class="song-info">Keno Je Toke</div>
+  </div>
+</div>
+
+<script>
+  const audioPlayer = document.getElementById('audioPlayer');
+  const songListContainer = document.getElementById('songList');
+  const songBoxes = songListContainer.querySelectorAll('.song-box');
+  const searchInput = document.getElementById('search-input');
+  let currentSongIndex = 0;
+
+  function playSong(index) {
+    if (index >= 0 && index < songBoxes.length) {
+      songBoxes.forEach((box, i) => {
+        box.classList.remove('active-song');
+      });
+
+      currentSongIndex = index;
+      const currentSongBox = songBoxes[index];
+      currentSongBox.classList.add('active-song');
+      audioPlayer.src = currentSongBox.getAttribute('data-src');
+      audioPlayer.play();
+    }
+  }
+
+  function filterSongs(searchTerm) {
+    searchTerm = searchTerm.toLowerCase();
+    songBoxes.forEach(box => {
+      const title = box.getAttribute('data-title').toLowerCase();
+      if (title.includes(searchTerm)) {
+        box.style.display = 'flex';
+      } else {
+        box.style.display = 'none';
+      }
+    });
+  }
+
+  songBoxes.forEach((box, index) => {
+    box.addEventListener('click', () => {
+      playSong(index);
+    });
+  });
+
+  audioPlayer.addEventListener('ended', () => {
+    currentSongIndex++;
+    if (currentSongIndex < songBoxes.length) {
+      playSong(currentSongIndex);
+    }
+  });
+
+  searchInput.addEventListener('input', () => {
+    filterSongs(searchInput.value);
+  });
+
+  // Play the first song initially
+  if (songBoxes.length > 0) {
+    playSong(0);
+  }
+</script>
+
+</body>
+</html>
