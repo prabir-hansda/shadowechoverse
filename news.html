@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg">
+
+  <meta name="description" content="This website is just for fun, own by Prabir Hansda">
+  <meta name="author" content="Prabir Hansda">
+  <title>ShadowEchoVerse News</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: purple;
+      --accent: #cc2119;
+      --light-bg: #f4f6fa;
+      --dark-bg: #1f1f1f;
+      --light-text: #333;
+      --dark-text: #eee;
+      --card-bg-light: #fff;
+      --card-bg-dark: #2a2a2a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    .toggle-mode {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .sidebar {
+      flex: 1 1 200px;
+      padding: 1rem;
+      max-width: 250px;
+    }
+
+    .sidebar button {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      padding: 0.6rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .sidebar button:hover {
+      background-color: #5c3ad4;
+    }
+
+    .content-area {
+      flex: 3 1 700px;
+      padding: 1rem;
+    }
+
+    .search-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .search-bar button {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .search-bar button:hover {
+      background-color: #a61c15;
+    }
+
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .news-card {
+      background-color: var(--card-bg-light);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body.dark .news-card {
+      background-color: var(--card-bg-dark);
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .news-card .content {
+      padding: 1rem;
+    }
+
+    .news-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .news-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+
+    .news-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .news-card a:hover {
+      text-decoration: underline;
+    }
+
+    .loader {
+      display: none;
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid var(--primary);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        max-width: 100%;
+        flex: 1 1 100%;
+      }
+
+      .content-area {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ShadowEchoVerse News</h1>
+    <button class="toggle-mode" onclick="toggleDarkMode()">Dark Mode</button>
+  </header>
+
+  <div class="main-content">
+    <aside class="sidebar">
+      <button onclick="filterNews('general')">General</button>
+      <button onclick="filterNews('technology')">Technology</button>
+      <button onclick="filterNews('sports')">Sports</button>
+      <button onclick="filterNews('business')">Business</button>
+      <button onclick="filterNews('entertainment')">Entertainment</button>
+      <button onclick="filterNews('health')">Health</button>
+    </aside>
+
+    <section class="content-area">
+      <div class="search-bar">
+        <input type="text" id="search" placeholder="Search news...">
+        <button onclick="handleSearch()">Search</button>
+      </div>
+
+      <div class="loader" id="loader"></div>
+      <div id="news-container" class="news-container"></div>
+    </section>
+  </div>
+
+  <script>
+    const API_KEY = 'c493e0deb8ff2be533b6216288b8df75';
+    const BASE_URL = 'https://gnews.io/api/v4';
+    const loader = document.getElementById('loader');
+    const body = document.body;
+
+    async function fetchNews(query = 'latest') {
+      try {
+        loader.style.display = 'block';
+        const res = await fetch(`${BASE_URL}/search?q=${query}&token=${API_KEY}&lang=hi`);
+        const data = await res.json();
+        loader.style.display = 'none';
+        displayNews(data.articles);
+      } catch (error) {
+        loader.style.display = 'none';
+        console.error('Error fetching news:', error);
+      }
+    }
+
+    function displayNews(articles) {
+      const container = document.getElementById('news-container');
+      container.innerHTML = '';
+      articles.forEach(article => {
+        container.innerHTML += `
+          <div class="news-card">
+            <img src="${article.image || 'https://via.placeholder.com/400x200'}" alt="${article.title}">
+            <div class="content">
+              <h2>${article.title}</h2>
+              <p>${article.description || ''}</p>
+              <a href="${article.url}" target="_blank">Read More</a>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function handleSearch() {
+      const query = document.getElementById('search').value;
+      fetchNews(query);
+    }
+
+    function filterNews(category) {
+      fetchNews(category);
+    }
+
+    function toggleDarkMode() {
+      body.classList.toggle('dark');
+    }
+
+    // Load default news
+    fetchNews();
+  </script>
+</body>
+</html>
