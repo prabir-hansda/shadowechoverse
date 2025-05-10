@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShadowEchoVerse - A digital creative space by Prabir Hansda exploring web development, design, and innovation">
+  <meta name="keywords" content="web development, design, creativity, technology, Prabir Hansda">
+  
+  <meta name="google-site-verification" content="7DQuYEwUYANzh3D6YfIhVHjl5gcqH1aLkLg1icCfGfc" />
+  
+  <meta name="author" content="Prabir Hansda">
+  <meta name="owner-website" content="https://prabirhansda.onrender.com">
+  <meta name="owner-name" content="Prabir Hansda">
+  <link rel="alternate" href="https://prabirhansda.onrender.com" title="Prabir Hansda Official Site">
+
+  <meta property="og:title" content="ShadowEchoVerse | Creative Digital Space">
+  <meta property="og:description" content="A digital canvas exploring the intersection of creativity and technology">
+  <meta property="og:image" content="https://raw.githubusercontent.com/prabir-hansda/Hansda-Music-Player/main/I%20image.png">
+  <meta property="og:url" content="https://shadowechoverse.onrender.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/main/1.jpg">
+  
+  <title>ShadowEchoVerse | Creative Digital Space</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #7CFC00;
+      --secondary-color: #8e2de2;
+      --dark-bg: rgba(0, 0, 0, 0.85);
+      --light-bg: rgba(255, 255, 255, 0.15);
+      --text-light: #ffffff;
+      --text-dark: #121212;
+      --transition-speed: 0.3s;
+      --border-radius: 12px;
+      --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(270deg, #00f0ff, #00c6ff, #8e2de2, #ff00c8, pink, #ff7e5f, purple);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      color: var(--text-light);
+      min-height: 175vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background-color: var(--dark-bg);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin: 2rem auto;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 900px;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(to right, #fff, #7CFC00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--light-bg);
+      color: var(--text-light);
+      padding: 0.8rem 1.5rem;
+      min-width: 200px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition-speed) ease;
+      backdrop-filter: blur(5px);
+      font-size: 0.95rem;
+    }
+    
+    .tab-btn i {
+      margin-right: 8px;
+      font-size: 1.1rem;
+    }
+    
+    .tab-btn:hover {
+      background: var(--primary-color);
+      color: var(--text-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(124, 252, 0, 0.3);
+      border-color: transparent;
+    }
+    
+    .content-section {
+      background: var(--dark-bg);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin: 2rem auto;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 900px;
+    }
+    
+    .content-section p {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+    
+    .content-section a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all var(--transition-speed) ease;
+    }
+    
+    .content-section a:hover {
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+    
+    footer {
+      background: var(--dark-bg);
+      padding: 2rem;
+      text-align: center;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-top: 3rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: var(--light-bg);
+      color: var(--text-light);
+      border-radius: 50%;
+      transition: all var(--transition-speed) ease;
+      font-size: 1.2rem;
+    }
+    
+    .social-link:hover {
+      background: var(--primary-color);
+      color: var(--text-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(124, 252, 0, 0.3);
+    }
+    
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+      margin: 2rem 0;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      header, .content-section {
+        padding: 1.5rem;
+      }
+      
+      .tab-btn {
+        min-width: 160px;
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tab-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>ShadowEchoVerse</h1>
+      <p class="subtitle">Where Creativity Meets Technology</p>
+      
+      <div class="tabs" id="tabMenu">
+        <a class="tab-btn" href="news.html"><i class="fas fa-newspaper"></i> Latest News</a>
+        <a class="tab-btn" href="music.html"><i class="fas fa-music"></i> Music</a>
+        <a class="tab-btn" href="video.html"><i class="fas fa-video"></i> Video</a>
+        <a class="tab-btn" href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+        <a class="tab-btn" href="links.html"><i class="fas fa-link"></i>Links</a>
+        <a class="tab-btn" href="about.html"><i class="fas fa-user"></i> About</a>
+      </div>
+    </header>
+    
+    <div class="content-section">
+      <h2>Welcome to My ShadowEchoVerse</h2>
+      <div class="divider"></div>
+      
+      <p>
+        <strong>Hello, I'm <a href="https://prabirhansda.onrender.com" target="_blank">Prabir Hansda</a> — designer, developer, and creative explorer.</strong>
+      </p>
+      
+      <p><em>
+        ShadowEchoVerse represents my journey at the intersection of technology and artistic expression. This platform serves as both a portfolio and playground, where I experiment with cutting-edge web technologies, share my creative projects, and document my learning process.</em>
+      </p>
+      
+      <p>
+       <p><em>I am learning HTML to build websites. Understanding HTML is my first step toward web development. I explore tags, elements, and structure while experimenting with layouts.</em></p>
+      </p>
+      
+      <div class="divider"></div>
+      
+      <div class="social-links">
+        <a href="https://www.instagram.com/prabirhansda2" class="social-link" aria-label="Instagram" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        
+        <a href="mailto: PrabirHansda2@outlook.com" class="social-link" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    
+    <footer>
+      <p class="copyright">&copy; <span id="year"></span> ShadowEchoVerse | Created by Prabir Hansda</p>
+    </footer>
+  </div>
+  
+  <script>
+    // Update copyright year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Add active class to current page button
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      if (btn.getAttribute('href') === currentPage) {
+        btn.classList.add('active');
+      }
+    });
+  </script>
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ShadowEchoVerse",
+      "url": "https://shadowechoverse.onrender.com",
+      "description": "A digital creative space exploring web development, design, and innovation",
+      "author": {
+        "@type": "Person",
+        "name": "Prabir Hansda",
+        "url": "https://prabirhansda.onrender.com"
+      },
+      "sameAs": [
+        "https://www.instagram.com/prabirhansda2"
+      
+      ]
+    }
+  </script>
+</body>
+</html>
