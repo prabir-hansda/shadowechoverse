@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6a11cb;
+      --secondary: #2575fc;
+      --accent: #ff4d4d;
+      --dark: #121212;
+      --light: #f8f9fa;
+      --card-bg: rgba(0, 0, 0, 0.7);
+      --glass-effect: rgba(255, 255, 255, 0.05);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--light);
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    
+    .header-content {
+      backdrop-filter: blur(10px);
+      background: var(--glass-effect);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: inline-block;
+      transition: transform 0.3s ease-out;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #fff, #c9d6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+    
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .video-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .video-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .video-container {
+      position: relative;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    video {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      border: none;
+      object-fit: contain;
+      display: block;
+    }
+    
+    iframe {
+      width: 100%;
+      height: 400px; /* Fixed height for YouTube videos */
+      border: none;
+    }
+    
+    .video-info {
+      padding: 1.5rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      border-top: 1px solid var(--glass-effect);
+    }
+    
+    .video-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .video-description {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      line-height: 1.5;
+      margin-top: 0.5rem;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-right: 0.5rem;
+    }
+    
+    .badge-local {
+      background: linear-gradient(to right, var(--accent), #ff8a00);
+    }
+    
+    .badge-yt {
+      background: linear-gradient(to right, #ff0000, #ff5e5e);
+    }
+    
+    .floating-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      filter: blur(40px);
+    }
+    
+    /* Video overlay effect */
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 30%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    /* Loading animation */
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      z-index: 1;
+    }
+    
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    @media (max-width: 768px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .header-content {
+        padding: 1.5rem;
+      }
+      
+      iframe {
+        height: 250px; /* Smaller height for mobile */
+      }
+    }
+    
+    /* Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Fancy hover effect for video cards */
+    .video-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at var(--x) var(--y), 
+                  rgba(255,255,255,0.1) 0%, 
+                  transparent 20%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+    
+    .video-card:hover::before {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background elements -->
+  <div class="floating-bg">
+    <div class="bg-circle" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
+    <div class="bg-circle floating" style="width: 400px; height: 400px; top: 60%; left: 70%; animation-delay: 2s;"></div>
+    <div class="bg-circle floating" style="width: 200px; height: 200px; top: 30%; left: 80%; animation-delay: 4s;"></div>
+    <div class="bg-circle" style="width: 350px; height: 350px; top: 70%; left: 20%;"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1>Video Gallery</h1>
+        <p class="subtitle">Enjoy high-quality content in a beautiful interface</p>
+      </div>
+    </header>
+
+    <div class="video-grid">
+      <!-- Local Video 1 -->
+      <div class="video-card">
+        <div class="video-container">
+          <div class="loader"></div>
+          <div class="video-overlay"></div>
+          <video id="localVideo1" controls controlsList="nodownload" loop poster="https://raw.githubusercontent.com/prabir-hansda/Hansda-Music-Player/refs/heads/main/Jayanti%20di.jpg">
+            <source src="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/VID-20250119-WA0001.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-info">
+          <div class="video-title">
+            <span class="badge badge-local">Local</span>
+            <span>Special Moments</span>
+          </div>
+          <p class="video-description">❄️ Beautiful life ❄️</p>
+        </div>
+      </div>
+
+      <!-- Local Video 2 -->
+      <div class="video-card">
+        <div class="video-container">
+          <div class="loader"></div>
+          <div class="video-overlay"></div>
+          <video id="localVideo2" controls controlsList="nodownload" loop poster="https://raw.githubusercontent.com/prabir-hansda/Hansda-Music-Player/refs/heads/main/The%20Best%20Free%20YouTube%20Video%20Downloader_exported_0.jpg">
+            <source src="https://raw.githubusercontent.com/prabir-hansda/Video-reels-me/refs/heads/main/The%20Best%20Free%20YouTube%20Video%20Downloader%7E2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-info">
+          <div class="video-title">
+            <span class="badge badge-local">Local</span>
+            <span>BMW Showcase</span>
+          </div>
+          <p class="video-description">Experience of automotive engineering</p>
+        </div>
+      </div>
+
+      <!-- YouTube Video 1 -->
+      <div class="video-card">
+        <div class="video-container">
+          <div class="loader"></div>
+          <div class="video-overlay"></div>
+          <iframe 
+            id="youtubeVideo1"
+            src="https://www.youtube.com/embed/NUu3kX9gx9c?enablejsapi=1&modestbranding=1&rel=0" 
+            title="YouTube video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            frameborder="0">
+          </iframe>
+        </div>
+        <div class="video-info">
+          <div class="video-title">
+            <span class="badge badge-yt">YouTube</span>
+            <span>Musical Journey</span>
+          </div>
+          <p class="video-description">💐🌹 A beautiful composition to soothe your soul 🪻🌼</p>
+        </div>
+      </div>
+
+      <!-- YouTube Video 2 -->
+      <div class="video-card">
+        <div class="video-container">
+          <div class="loader"></div>
+          <div class="video-overlay"></div>
+          <iframe 
+            id="youtubeVideo2"
+            src="https://www.youtube.com/embed/EFmxPMdBqmU?enablejsapi=1&modestbranding=1&rel=0" 
+            title="YouTube video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            frameborder="0">
+          </iframe>
+        </div>
+        <div class="video-info">
+          <div class="video-title">
+            <span class="badge badge-yt">YouTube</span>
+            <span>Visual Symphony</span>
+          </div>
+          <p class="video-description">🌸🌷 A mesmerizing blend of sight and sound 🌹💐</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const localVideos = [
+        document.getElementById('localVideo1'),
+        document.getElementById('localVideo2')
+      ];
+      const youtubeIframes = [
+        document.getElementById('youtubeVideo1'),
+        document.getElementById('youtubeVideo2')
+      ];
+      let youtubePlayers = [];
+      
+      // Mouse position tracking for fancy hover effect
+      document.querySelectorAll('.video-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--x', `${x}px`);
+          card.style.setProperty('--y', `${y}px`);
+        });
+      });
+
+      // Function to pause all videos except the one playing
+      function pauseAllVideos(except = null) {
+        // Pause all local videos
+        localVideos.forEach(video => {
+          if (video !== except && !video.paused) {
+            video.pause();
+          }
+        });
+
+        // Pause all YouTube videos
+        youtubePlayers.forEach(player => {
+          if (player && player.pauseVideo && player !== except) {
+            try {
+              player.pauseVideo();
+            } catch (e) {
+              console.log("YouTube API error:", e);
+            }
+          }
+        });
+      }
+
+      // Add event listeners to local videos
+      localVideos.forEach(video => {
+        video.addEventListener('play', () => {
+          pauseAllVideos(video);
+        });
+        
+        // Hide loader when video can play
+        video.addEventListener('canplay', () => {
+          const loader = video.parentElement.querySelector('.loader');
+          if (loader) loader.style.display = 'none';
+        });
+      });
+
+      // Load YouTube API
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // Initialize YouTube players
+      function onYouTubeIframeAPIReady() {
+        youtubeIframes.forEach((iframe, index) => {
+          const player = new YT.Player(iframe, {
+            events: {
+              'onReady': function(event) {
+                // Hide loader when YouTube player is ready
+                const loader = iframe.parentElement.querySelector('.loader');
+                if (loader) loader.style.display = 'none';
+              },
+              'onStateChange': function(event) {
+                if (event.data == YT.PlayerState.PLAYING) {
+                  pauseAllVideos(player);
+                }
+              }
+            }
+          });
+          youtubePlayers.push(player);
+        });
+      }
+      
+      // Fallback if YT API isn't loaded properly
+      window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+      
+      // Add subtle parallax effect to header
+      document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        document.querySelector('.header-content').style.transform = 
+          `translate(${x * 10}px, ${y * 10}px)`;
+      });
+      
+      // Disable right-click context menu to prevent download options
+      document.addEventListener('contextmenu', (e) => {
+        if (e.target.tagName === 'VIDEO' || e.target.tagName === 'IFRAME') {
+          e.preventDefault();
+        }
+      });
+      
+      // Show loading indicators initially
+      document.querySelectorAll('.loader').forEach(loader => {
+        loader.style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>
