@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | ShadowEchoVerse</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8e2de2;
+      --secondary: #4a00e0;
+      --accent: #00f0ff;
+      --dark: #121212;
+      --light: #f8f9fa;
+      --text: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: rgba(18, 18, 18, 0.9);
+      padding: 25px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .about-hero {
+      text-align: center;
+      padding: 80px 0 60px;
+    }
+
+    .about-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 60px 0;
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-card {
+      background: rgba(30, 30, 30, 0.7);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .about-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .owner-card {
+      text-align: center;
+    }
+
+    .owner-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 3px solid var(--primary);
+    }
+    .icon{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+    }
+
+    .owner-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .owner-title {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      color: var(--text);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: rgba(18, 18, 18, 0.9);
+      padding: 30px 0;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .footer-content p {
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header-content">
+      <a href="#" class="logo">ShadowEchoVerse</a>
+      <nav>
+    
+        <div class="social-links">
+        <a href="http://prabirhansda.onrender.com" class="social-link" aria-label="Profile" target="_blank">
+          
+  <img src="https://raw.githubusercontent.com/prabir-hansda/Hansda-Music-Player/refs/heads/main/My%20Sketch.jpg" alt="image" class="icon">
+  
+</div>
+    
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <h1>About ShadowEchoVerse</h1>
+        <p>A digital creative space founded by Prabir Hansda, blending technology, music, and visual artistry</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="about-content">
+        <div class="about-card">
+          <h2>The Website</h2>
+          <p>ShadowEchoVerse is a personal creative project that serves as a platform to share music, visual content, and web development experiments. The name represents a digital universe where shadows (ideas) and echoes (sounds/expressions) converge.</p>
+          <p>This website was built using modern web technologies including HTML5, CSS3, and JavaScript, with a focus on creating an immersive user experience. The design reflects a blend of minimalist aesthetics with vibrant accent colors that represent the creative energy behind the project.</p>
+          <p>What began as a personal learning project has evolved into a growing collection of creative works and technical experiments. The site continues to develop with new features and content being added regularly.</p>
+        </div>
+        
+        <div class="about-card owner-card">
+          <a href="http://prabirhansda.onrender.com" class="social-link" aria-label="Profile" target="_blank">
+          <img src="https://raw.githubusercontent.com/prabir-hansda/Hansda-Music-Player/refs/heads/main/My%20Sketch.jpg" alt="Prabir Hansda" class="owner-image">
+          </a>
+          <h3>Prabir Hansda</h3>
+          <p class="owner-title">Founder & Creator</p>
+          <p>A passionate developer and creative enthusiast with a love for music, technology, and digital art. Prabir built ShadowEchoVerse as a space to explore these interests and share them with the world.</p>
+      
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; 2025 ShadowEchoVerse. All rights reserved.</p>
+      <p>Created with passion by Prabir Hansda</p>
+    </div>
+  </footer>
+</body>
+
+</html>
