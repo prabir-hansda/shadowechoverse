@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/jpg" href="https://raw.githubusercontent.com/prabir-hansda/Music-public-for-read/refs/heads/main/1.jpg">
+  <meta name="description" content="ShadowEchoVerse News - Stay updated with the latest news from around the world">
+  <meta name="author" content="Prabir Hansda">
+  <title>ShadowEchoVerse News</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6c5ce7;
+      --primary-dark: #5649c0;
+      --accent: #ff4757;
+      --accent-dark: #e84118;
+      --light-bg: #f8f9fa;
+      --dark-bg: #121212;
+      --light-text: #2d3436;
+      --dark-text: #f5f6fa;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #1e1e1e;
+      --sidebar-bg-light: #ffffff;
+      --sidebar-bg-dark: #1a1a1a;
+      --header-bg: linear-gradient(135deg, #6c5ce7 0%, #5649c0 100%);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      transition: var(--transition);
+      line-height: 1.6;
+    }
+
+    body.dark {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--header-bg);
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo i {
+      font-size: 1.5rem;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .toggle-mode {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+
+    .toggle-mode:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .sidebar {
+      flex: 1 1 250px;
+      padding: 1.5rem;
+      background-color: var(--sidebar-bg-light);
+      transition: var(--transition);
+    }
+
+    body.dark .sidebar {
+      background-color: var(--sidebar-bg-dark);
+    }
+
+    .sidebar h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sidebar h3 i {
+      font-size: 1.2rem;
+    }
+
+    .sidebar button {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 0.75rem;
+      padding: 0.75rem 1rem;
+      background-color: transparent;
+      color: var(--light-text);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+      gap: 0.75rem;
+    }
+
+    body.dark .sidebar button {
+      color: var(--dark-text);
+    }
+
+    .sidebar button i {
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    .sidebar button:hover, .sidebar button.active {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .sidebar button.active i {
+      color: white;
+    }
+
+    .content-area {
+      flex: 3 1 800px;
+      padding: 2rem;
+    }
+
+    .search-container {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .search-bar {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.9rem 1.2rem 0.9rem 3rem;
+      border-radius: 30px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    body.dark .search-bar input {
+      background-color: var(--card-bg-dark);
+      color: var(--dark-text);
+      border-color: #333;
+    }
+
+    .search-bar i {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #777;
+    }
+
+    body.dark .search-bar i {
+      color: #aaa;
+    }
+
+    .search-btn {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 0 1.5rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .search-btn:hover {
+      background-color: var(--accent-dark);
+    }
+
+    .loader {
+      display: none;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .no-results {
+      text-align: center;
+      grid-column: 1 / -1;
+      padding: 2rem;
+      color: #777;
+    }
+
+    body.dark .no-results {
+      color: #aaa;
+    }
+
+    .no-results i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .no-results h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .news-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .news-card {
+      background-color: var(--card-bg-light);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    body.dark .news-card {
+      background-color: var(--card-bg-dark);
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .news-card .image-container {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .news-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .news-card .category-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      z-index: 1;
+    }
+
+    .news-card .content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .news-card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #666;
+      flex: 1;
+    }
+
+    body.dark .news-card p {
+      color: #aaa;
+    }
+
+    .news-card .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    body.dark .news-card .meta {
+      color: #888;
+    }
+
+    .news-card .source {
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .news-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .news-card a:hover {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
+
+    .date-picker {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .date-picker input {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body.dark .date-picker input {
+      background-color: var(--card-bg-dark);
+      color: var(--dark-text);
+      border-color: #333;
+    }
+
+    @media (max-width: 992px) {
+      .main-content {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        max-width: 100%;
+        flex: 1 1 100%;
+      }
+
+      .content-area {
+        flex: 1 1 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+
+      .logo h1 {
+        font-size: 1.3rem;
+      }
+
+      .content-area {
+        padding: 1rem;
+      }
+
+      .search-container {
+        flex-direction: column;
+      }
+
+      .search-btn {
+        padding: 0.9rem 1.5rem;
+        justify-content: center;
+      }
+
+      .news-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-controls {
+        gap: 0.5rem;
+      }
+
+      .toggle-mode span {
+        display: none;
+      }
+
+      .toggle-mode {
+        padding: 0.5rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        justify-content: center;
+      }
+
+      .news-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <i class="fas fa-newspaper"></i>
+      <h1>ShadowEchoVerse News</h1>
+    </div>
+    <div class="header-controls">
+      <button class="toggle-mode" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+        <span>Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <aside class="sidebar">
+      <h3><i class="fas fa-filter"></i> Categories</h3>
+      <button class="active" onclick="filterNews('general')">
+        <i class="fas fa-globe"></i> General
+      </button>
+      <button onclick="filterNews('technology')">
+        <i class="fas fa-microchip"></i> Technology
+      </button>
+      <button onclick="filterNews('business')">
+        <i class="fas fa-chart-line"></i> Business
+      </button>
+      <button onclick="filterNews('entertainment')">
+        <i class="fas fa-film"></i> Entertainment
+      </button>
+      <button onclick="filterNews('health')">
+        <i class="fas fa-heartbeat"></i> Health
+      </button>
+      <button onclick="filterNews('science')">
+        <i class="fas fa-flask"></i> Science
+      </button>
+      <button onclick="filterNews('sports')">
+        <i class="fas fa-running"></i> Sports
+      </button>
+    </aside>
+
+    <section class="content-area">
+      <div class="search-container">
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" id="search" placeholder="Search for news..." onkeypress="handleKeyPress(event)">
+        </div>
+        <button class="search-btn" onclick="handleSearch()">
+          <i class="fas fa-search"></i>
+          <span>Search</span>
+        </button>
+      </div>
+
+      <div class="loader" id="loader"></div>
+      <div id="news-container" class="news-container"></div>
+    </section>
+  </div>
+
+  <script>
+    const API_KEY = '23a50cf18eec4be3be5eed5ed6f756f5';
+    const BASE_URL = 'https://newsapi.org/v2';
+    const loader = document.getElementById('loader');
+    const newsContainer = document.getElementById('news-container');
+    const body = document.body;
+    let currentCategory = 'general';
+    let currentSearchTerm = '';
+
+    // Initialize the app
+    function init() {
+      // Check for dark mode preference
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark');
+        document.querySelector('.toggle-mode i').className = 'fas fa-sun';
+      }
+      
+      // Load default news
+      fetchNews(currentCategory);
+      
+      // Add event listener for Enter key in search
+      document.getElementById('search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          handleSearch();
+        }
+      });
+    }
+
+    // Handle key press in search
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        handleSearch();
+      }
+    }
+
+    // Fetch news from API
+    async function fetchNews(query = 'general', isSearch = false) {
+      try {
+        loader.style.display = 'block';
+        newsContainer.innerHTML = '';
+        
+        let url;
+        if (isSearch) {
+          url = `${BASE_URL}/everything?q=${query}&apiKey=${API_KEY}&pageSize=30&sortBy=publishedAt`;
+        } else {
+          url = `${BASE_URL}/top-headlines?country=us&category=${query}&apiKey=${API_KEY}&pageSize=30`;
+        }
+        
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`API request failed with status ${res.status}`);
+        }
+        const data = await res.json();
+        
+        loader.style.display = 'none';
+        
+        if (data.articles && data.articles.length > 0) {
+          displayNews(data.articles, query);
+        } else {
+          showNoResults();
+        }
+      } catch (error) {
+        loader.style.display = 'none';
+        console.error('Error fetching news:', error);
+        showNoResults(true);
+      }
+    }
+
+    // Display news articles
+    function displayNews(articles, category = 'general') {
+      newsContainer.innerHTML = '';
+      
+      // Filter out articles without title or content
+      const validArticles = articles.filter(article => 
+        article.title && article.title !== '[Removed]' && 
+        article.description && article.description !== '[Removed]'
+      );
+      
+      if (validArticles.length === 0) {
+        showNoResults();
+        return;
+      }
+      
+      validArticles.forEach(article => {
+        const date = new Date(article.publishedAt);
+        const formattedDate = date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+        
+        // Extract domain from URL for source
+        let sourceName = article.source.name;
+        if (article.url) {
+          try {
+            const url = new URL(article.url);
+            sourceName = url.hostname.replace('www.', '');
+          } catch (e) {
+            console.log('Could not parse URL', e);
+          }
+        }
+        
+        newsContainer.innerHTML += `
+          <div class="news-card">
+            <div class="image-container">
+              <img src="${article.urlToImage || 'https://via.placeholder.com/600x400?text=No+Image'}" alt="${article.title}">
+              <span class="category-badge">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
+            </div>
+            <div class="content">
+              <h2>${article.title}</h2>
+              <p>${article.description || 'No description available.'}</p>
+              <div class="meta">
+                <span>${formattedDate}</span>
+                <span class="source">${sourceName}</span>
+              </div>
+              <a href="${article.url}" target="_blank" rel="noopener noreferrer">
+                Read More <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Show no results message
+    function showNoResults(isError = false) {
+      newsContainer.innerHTML = `
+        <div class="no-results">
+          <i class="fas fa-${isError ? 'exclamation-triangle' : 'newspaper'}"></i>
+          <h2>${isError ? 'Error Loading News' : 'No News Found'}</h2>
+          <p>${isError ? 'There was an error fetching news. Please try again later.' : 
+            'Try a different search term or category.'}</p>
+        </div>
+      `;
+    }
+
+    // Handle search
+    function handleSearch() {
+      const searchTerm = document.getElementById('search').value.trim();
+      if (searchTerm) {
+        currentSearchTerm = searchTerm;
+        currentCategory = '';
+        updateActiveCategoryButton('');
+        fetchNews(searchTerm, true);
+      }
+    }
+
+    // Filter news by category
+    function filterNews(category) {
+      currentCategory = category;
+      currentSearchTerm = '';
+      document.getElementById('search').value = '';
+      updateActiveCategoryButton(category);
+      fetchNews(category);
+    }
+
+    // Update active category button
+    function updateActiveCategoryButton(category) {
+      const buttons = document.querySelectorAll('.sidebar button');
+      buttons.forEach(button => {
+        button.classList.remove('active');
+        if (button.textContent.trim().toLowerCase().includes(category.toLowerCase())) {
+          button.classList.add('active');
+        }
+      });
+    }
+
+    // Toggle dark mode
+    function toggleDarkMode() {
+      body.classList.toggle('dark');
+      const icon = document.querySelector('.toggle-mode i');
+      
+      if (body.classList.contains('dark')) {
+        localStorage.setItem('darkMode', 'enabled');
+        icon.className = 'fas fa-sun';
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+        icon.className = 'fas fa-moon';
+      }
+    }
+
+    // Initialize the app
+    window.onload = init;
+  </script>
+</body>
+</html>
