@@ -1,5 +1,5 @@
 {
-  "routes": {
-    "/music": "/music.html"
-  }
+  "rewrites": [
+    { "source": "/music", "destination": "/music.html" }
+  ]
 }
